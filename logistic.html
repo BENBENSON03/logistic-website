@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haulr – Logistics &amp; Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <a class="logo" href="#top">Haulr</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav id="menu" aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#track">Track</a>
+    <a href="#book">Book</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#drivers">Drivers</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <button class="icon" id="bell" aria-label="Notifications">🔔<span id="bellCount">0</span></button>
+  <button class="icon" id="theme" aria-label="Toggle dark mode">🌓</button>
+</header>
+<div class="panel" id="notifPanel" hidden><h3>Notifications</h3><ul id="notifList"></ul></div>
+
+<main id="main">
+<section class="hero" id="top">
+  <div>
+    <h1>Delivering beyond expectations.</h1>
+    <p>Same-day, interstate and bulk delivery for businesses and individuals, with live tracking on every package.</p>
+    <div class="cta">
+      <a class="btn" href="#book">Book a delivery</a>
+      <a class="btn ghost" href="#track">Track package</a>
+      <a class="btn ghost" href="#book" data-quote>Get a quote</a>
+    </div>
+  </div>
+  <div class="card track-card" id="track">
+    <h2>Track a package</h2>
+    <form id="trackForm" novalidate>
+      <label for="tn">Tracking number</label>
+      <div class="row">
+        <input id="tn" placeholder="e.g. HLR1001" autocomplete="off">
+        <button class="btn">Track</button></div>
+      <small class="err" id="tnErr"></small>
+    </form>
+    <div id="trackResult" aria-live="polite"><p class="muted">Try HLR1001, HLR1002 or HLR1003.</p></div>
+  </div>
+</section>
+
+<section id="services"><h2>Services</h2><div class="grid" id="serviceGrid"></div></section>
+
+<section id="book" class="split">
+  <div><h2>Book a delivery</h2>
+  <form id="bookForm" class="card" novalidate>
+    <label>Pickup location<input name="from" required></label>
+    <label>Destination<input name="to" required></label>
+    <label>Package type<select name="type"><option value="1">Documents</option>
+      <option value="1.3">Parcel</option>
+      <option value="1.6">Fragile</option>
+      <option value="2">Pallet</option></select></label>
+    <label>Weight (kg)<input name="kg" type="number" min="0.1" step="0.1" required></label>
+    <label>Delivery option<select name="speed"><option value="1">Standard (2–3 days)</option>
+      <option value="1.6">Express (next day)</option>
+      <option value="2.4">Same-day</option></select></label>
+    <label>Preferred pickup date<input name="date" type="date" required></label>
+    <label>Phone<input name="phone" type="tel" required></label>
+    <label>Email<input name="email" type="email" required></label>
+    <small class="err" id="bookErr"></small>
+    <button class="btn">Confirm booking</button>
+  </form></div>
+  <aside class="card price"><h3>Estimated fee</h3><p class="big" id="price">₦0</p><p class="muted">Updates as you fill the form. Final price is confirmed after pickup.</p></aside>
+</section>
+
+<section id="dashboard"><h2>Your dashboard</h2>
+  <div class="stats" id="stats"></div>
+  <div class="split">
+    <div class="card"><h3>Monthly shipments</h3><canvas id="chart" width="600" height="240" role="img" aria-label="Bar chart of monthly shipments"></canvas></div>
+    <div class="card"><h3>Shipments</h3>
+      <div class="row">
+        <input id="search" placeholder="Search by ID or city" aria-label="Search shipments">
+      <select id="filter" aria-label="Filter status"><option value="">All</option>
+      <option>In Transit</option>
+      <option>Delivered</option>
+      <option>Pending</option></select></div>
+      <ul class="list" id="shipList"></ul></div>
+  </div>
+</section>
+
+<section id="drivers"><h2>Drivers</h2><div class="grid" id="driverGrid"></div></section>
+
+<section><h2>How it works</h2><ol class="steps">
+  <li>Book online in under a minute.</li>
+  <li>A driver picks up your package.</li>
+  <li>Follow it live until it arrives.</li></ol></section>
+
+<section id="faq"><h2>Questions</h2><div id="faqList"></div></section>
+
+<section><h2>What customers say</h2><div class="grid" id="reviews"></div></section>
+</main>
+
+<footer><p>Haulr Logistics · Lagos · hello@haulr.example · +234 800 000 0000</p></footer>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="card"><h3 id="mTitle"></h3><p id="mBody"></p><button class="btn" id="mClose">Close</button></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
